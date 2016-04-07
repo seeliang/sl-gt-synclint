@@ -1,0 +1,23 @@
+{
+  "name": "sl-gt-synclint",
+  "version": "1.0.0",
+  "description": "gulp task for sync lint from a npm package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seeliang/sl-gt-synclint.git"
+  },
+  "keywords": [
+    "gulp",
+    "task"
+  ],
+  "author": "sihui liang me@sihuiliang.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seeliang/sl-gt-synclint/issues"
+  },
+  "homepage": "https://github.com/seeliang/sl-gt-synclint#readme"
+}
