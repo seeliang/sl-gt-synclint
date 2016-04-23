@@ -11,7 +11,7 @@ module.exports = function(gulp) {
     if (index < 1 || length !== 5) {
       gutil.log(
         gutil.colors.red(
-          'Syntax error: Please set path with $ synclint --path <your lint npm package>'
+          'Syntax error: Please sync with path set: $ gulp synclint --path <your lint npm package>'
         )
       );
       return;
@@ -30,7 +30,7 @@ module.exports = function(gulp) {
       } else {
         gutil.log(
           gutil.colors.red(
-          'Could not find package, please make sure you installed your lint npm package'
+          'Could not find local npm lint package, please make sure you installed your package'
           )
         );
       }
