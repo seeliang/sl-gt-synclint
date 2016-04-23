@@ -1,15 +1,20 @@
+//with bebal with react
+// gulp replace
+'use strict';
+var gutil = require('gulp-util');
 module.exports = function(gulp) {
   gulp.task('synclint', function() {
-    var index = process.argv.indexOf("--path"),
+    var index = process.argv.indexOf('--path'),
       lintFolder = './node_modules/' + process.argv[4],
       length = process.argv.length,
       fs = require('fs');
     if (index < 1 || length !== 5) {
-      console.log(
-        '\n' +
-        'Syntax error: Please set path with $ synclint --path <your lint set npm name>' +
-        '\n'
+      gutil.log(
+        gutil.colors.red(
+          'Syntax error: Please set path with $ synclint --path <your lint npm package>'
+        )
       );
+      return;
     }
 
     fs.exists(lintFolder, (exists) => {
@@ -18,15 +23,18 @@ module.exports = function(gulp) {
           lintFolder + '/.scss-lint.yml',
           lintFolder + '/.eslintrc'
         ])
-        .pipe( gulp.dest('./') );
+        .pipe( gulp.dest('./') )
+        .on('end', function(){
+          gutil.log('You just updated your lint from ' + lintFolder);
+        });
       } else {
-        console.log(
-          '\n' +
-          'Could not find package, please check your lint dependency' +
-          '\n'
+        gutil.log(
+          gutil.colors.red(
+          'Could not find package, please make sure you installed your lint npm package'
+          )
         );
       }
     });
 
   });
-}
+};

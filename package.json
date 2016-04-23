@@ -4,20 +4,27 @@
   "description": "gulp task for sync lint from a npm package",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "synclint": "gulp synclint --path sl-fe-lint"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/seeliang/sl-gt-synclint.git"
   },
   "keywords": [
-    "gulp",
-    "task"
+    "gulp task"
   ],
   "author": "sihui liang me@sihuiliang.com",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/seeliang/sl-gt-synclint/issues"
   },
-  "homepage": "https://github.com/seeliang/sl-gt-synclint#readme"
+  "homepage": "https://github.com/seeliang/sl-gt-synclint#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "sl-fe-lint": "^1.1.2"
+  },
+  "dependencies": {
+    "gulp-util": "^3.0.7"
+  }
 }
