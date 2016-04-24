@@ -1,9 +1,9 @@
-//with bebal with react
-// gulp replace
+//with bebal with react gulp replace
+//support short code -p
 'use strict';
 var gutil = require('gulp-util');
-module.exports = function(gulp) {
-  gulp.task('synclint', function() {
+module.exports = function synclint(gulp) {
+  gulp.task('synclint', () => {
     var index = process.argv.indexOf('--path'),
       lintFolder = './node_modules/' + process.argv[4],
       length = process.argv.length,
@@ -24,7 +24,7 @@ module.exports = function(gulp) {
           lintFolder + '/.eslintrc'
         ])
         .pipe( gulp.dest('./') )
-        .on('end', function(){
+        .on('end', () => {
           gutil.log('You just updated your lint from ' + lintFolder);
         });
       } else {
