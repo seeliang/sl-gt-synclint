@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "synclint": "gulp synclint --path sl-fe-lint --module"
+    "synclint": "gulp synclint-copy --path sl-fe-lint && gulp synclint-es --module"
   },
   "repository": {
     "type": "git",

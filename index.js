@@ -1,6 +1,5 @@
 //pipe if
 //support short code -p
-'use strict';
 let gutil = require('gulp-util'),
   runSequence = require('run-sequence'),
   deleteLines = require('gulp-delete-lines');
@@ -56,14 +55,7 @@ module.exports = function synclint(gulp) {
     );
   }
 
-
-
-
   readSet();
-
-  gulp.task('synclint',() => {
-    runSequence('synclint-copy','synclint-es');
-  });
 
   gulp.task('synclint-copy', () => {
 
