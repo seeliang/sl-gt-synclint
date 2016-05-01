@@ -1,6 +1,6 @@
 {
   "name": "sl-gt-synclint",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "gulp task for sync lint from a npm package",
   "main": "index.js",
   "scripts": {
