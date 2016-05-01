@@ -39,28 +39,26 @@ var gutil = require('gulp-util'),
     }
   };
 
-module.exports = {
-  copy: () => {
-    gulp.task('synclint-copy', () => {
-      var lintFolder = readPath();
-      if(passSyntaxCheck()) {
-        fs.exists(lintFolder, (exists) => {
-          if (exists) {
-            return gulp.src([
-              lintFolder + '/.scss-lint.yml',
-              lintFolder + '/.eslintrc'
-            ])
-            .pipe( gulp.dest('./'));
-          } else {
-            gutil.log(
-              gutil.colors.red(
-              'Could not find local npm lint package, please make sure you installed your package'
-              )
-            );
-            return;
-          }
-        });
-      }
-    });
-  }
+module.exports = function copylint () {
+  gulp.task('synclint-copy', () => {
+    var lintFolder = readPath();
+    if(passSyntaxCheck()) {
+      fs.exists(lintFolder, (exists) => {
+        if (exists) {
+          return gulp.src([
+            lintFolder + '/.scss-lint.yml',
+            lintFolder + '/.eslintrc'
+          ])
+          .pipe( gulp.dest('./'));
+        } else {
+          gutil.log(
+            gutil.colors.red(
+            'Could not find local npm lint package, please make sure you installed your package'
+            )
+          );
+          return;
+        }
+      });
+    }
+  });
 };
