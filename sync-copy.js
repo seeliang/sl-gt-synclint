@@ -1,7 +1,8 @@
 var gutil = require('gulp-util'),
   fs = require('fs'),
   gulp = require('gulp'),
-  length = process.argv.length,
+  userInput = process.argv,
+  length = userInput.length,
   syntaxError = function syntaxError() {
     gutil.log(
       gutil.colors.red(
@@ -9,8 +10,8 @@ var gutil = require('gulp-util'),
       )
     );
   },
-  passSyntaxCheck = function passSyntaxCheck() {
-    var pathSet = process.argv.indexOf('--path');
+  passSyntaxCheck = function passSyntaxCheck(input) {
+    var pathSet = input.indexOf('--path');
     if (!pathSet) {
       return false;
     }
@@ -25,24 +26,24 @@ var gutil = require('gulp-util'),
 
     return true;
   },
-  readPath =  function readPath() {
+  readPath =  function readPath(input) {
     var i;
     for (i = 0;i < length; i++ ) {
-      if (process.argv[i] === '--path') {
-        if (!passSyntaxCheck() ||
-          typeof process.argv[i + 1] === 'undefined') {
+      if (input[i] === '--path') {
+        if (!passSyntaxCheck(input) ||
+          typeof input[i + 1] === 'undefined') {
           syntaxError();
           return;
         }
-        return './node_modules/' + process.argv[i + 1];
+        return './node_modules/' + input[i + 1];
       }
     }
   };
 
 module.exports = function copylint () {
   gulp.task('synclint-copy', () => {
-    var lintFolder = readPath();
-    if(passSyntaxCheck()) {
+    var lintFolder = readPath(userInput);
+    if(passSyntaxCheck(userInput)) {
       fs.exists(lintFolder, (exists) => {
         if (exists) {
           return gulp.src([

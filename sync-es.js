@@ -2,28 +2,28 @@ var gutil = require('gulp-util'),
   gulp = require('gulp'),
   gulpif = require('gulp-if'),
   deleteLines = require('gulp-delete-lines'),
-
+  userInput = process.argv,
   fs = require('fs'),
   notModule = true,
   notBabel = true,
   notReact = true,
-  readEs = function readEs() {
+  readEs = function readEs(input) {
     var i,
-      length = process.argv.length;
+      length = input.length;
     for (i = 0;i < length;i++ ) {
-      if (process.argv[i] === '--babel') {
+      if (input[i] === '--babel') {
         notBabel = false;
       }
-      if (process.argv[i] === '--module') {
+      if (input[i] === '--module') {
         notModule = false;
       }
 
-      if (process.argv[i] === '--react') {
+      if (input[i] === '--react') {
         notReact = false;
       }
     }
   },
-  esSet = function esSet() {
+  esSet = function esSet(notBabel,notModule,notReact) {
     gulp.src('./.eslintrc')
     .pipe(
       gulpif(
@@ -60,13 +60,13 @@ var gutil = require('gulp-util'),
 
 module.exports = function syncEs() {
   gulp.task('synclint-es', () => {
-    readEs();
+    readEs(userInput);
     fs.exists('./.eslintrc', (exists) => {
       if (!exists) {
         gutil.log ('please sync your npm lint package first');
         return;
       } else {
-        esSet();
+        esSet(notBabel,notModule,notReact);
       }
     });
   });
