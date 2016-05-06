@@ -4,3 +4,5 @@ node_modules
 .eslintrc
 
 .scss-lint.yml
+
+*.log
