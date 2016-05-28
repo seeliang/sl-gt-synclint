@@ -47,7 +47,7 @@ module.exports = function copylint () {
       fs.exists(lintFolder, (exists) => {
         if (exists) {
           return gulp.src([
-            lintFolder + '/.scss-lint.yml',
+            lintFolder + '/.*lint.yml',
             lintFolder + '/.eslintrc'
           ])
           .pipe( gulp.dest('./'));
